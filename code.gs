@@ -7,6 +7,7 @@ function myFunction() {
   // Set each variable to open the respective document.
   var docTemplate = DocumentApp.openById(docTemplateId);
   var docFinal = DocumentApp.openById(docFinalId);
+  // The getSheetByName parameter must match the sheet name needed from the spreadsheet
   var spreadSheet = SpreadsheetApp.openById(workSheetId).getSheetByName("data");
 
   // Set variable called data to the range in which the spreadsheet data will be pulled from.
@@ -26,6 +27,7 @@ function createMailMerge(first, last, email, docFinal, templateParagraphs,){
     docFinal.getBody().appendParagraph(
       p
       .copy()
+      // Each first parameter in replaceText() must match the desired header from the spreadsheet
       .replaceText("{First Name}", first)
       .replaceText("{Last Name}", last)
       .replaceText("{Email}", email)
